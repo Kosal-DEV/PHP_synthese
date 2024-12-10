@@ -147,28 +147,29 @@ Les fonctions intégrées en PHP (ou fonctions natives) sont des fonctions qui s
 
 `strtoupper()` : Convertit une chaîne en majuscules.
 
-str_replace() : Remplace toutes les occurrences d'une sous-chaîne par une autre.
+`str_replace()` : Remplace toutes les occurrences d'une sous-chaîne par une autre.
 
-substr() : Extrait une portion d'une chaîne.
+`substr()` : Extrait une portion d'une chaîne.
 
-2. Fonctions sur les tableaux
+`count()` : Retourne le nombre d'éléments dans un tableau.
 
-count() : Retourne le nombre d'éléments dans un tableau.
+`array_push()` : Ajoute un ou plusieurs éléments à la fin d'un tableau.
 
-array_push() : Ajoute un ou plusieurs éléments à la fin d'un tableau.
+`Rand()` : La fonction rand() en PHP est utilisée pour générer un nombre aléatoire.
 
-Rand() : La fonction rand() en PHP est utilisée pour générer un nombre aléatoire.
+`Readline()` : Permet de demander à l’utilisateur d’entrer une valeur.
 
-Readline() : Permet de demander à l’utilisateur d’entrer une valeur.
-
-Is_numeric() : Permet de vérifier qu’une valeur est bien numeric (int, float)
+`Is_numeric()` : Permet de vérifier qu’une valeur est bien numeric (int, float).
 
 ## Require et include :
-En PHP, require et include sont des structures utilisées pour inclure et exécuter du code d'un autre fichier PHP dans le fichier en cours d'exécution. Les deux ont un fonctionnement similaire, mais il existe des différences importantes.
+require et include sont des structures utilisées pour inclure et exécuter du code d'un autre fichier PHP dans le fichier en cours d'exécution. Les deux ont un fonctionnement similaire, mais il existe des différences importantes.
 1. include
+
 include est utilisé pour inclure et exécuter un fichier PHP dans le fichier principal à l'endroit où la fonction est appelée.
 •	Si le fichier inclus est introuvable, PHP affiche un avertissement (warning), mais le script continue son exécution.
 •	Utilisé lorsque le fichier à inclure n'est pas critique pour le bon fonctionnement du programme, ou lorsque vous souhaitez que le script continue même si le fichier inclus est manquant.
+
 2. require
+
 require fonctionne de manière similaire à include, mais avec une différence importante : si le fichier n'est pas trouvé, PHP renverra une erreur fatale (fatal error) et arrêtera l'exécution du script. Cela est utile pour les fichiers qui sont essentiels pour le bon fonctionnement de l'application (par exemple, des fichiers de configuration, des classes nécessaires, etc.).
 •	Utilisé lorsque l'absence du fichier inclus rend le reste du programme inutilisable ou incorrect.

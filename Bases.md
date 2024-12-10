@@ -166,10 +166,10 @@ require et include sont des structures utilisées pour inclure et exécuter du c
 1. include
 
 include est utilisé pour inclure et exécuter un fichier PHP dans le fichier principal à l'endroit où la fonction est appelée.
-•	Si le fichier inclus est introuvable, PHP affiche un avertissement (warning), mais le script continue son exécution.
-•	Utilisé lorsque le fichier à inclure n'est pas critique pour le bon fonctionnement du programme, ou lorsque vous souhaitez que le script continue même si le fichier inclus est manquant.
+-	Si le fichier inclus est introuvable, PHP affiche un avertissement (warning), mais le script continue son exécution.
+-	Utilisé lorsque le fichier à inclure n'est pas critique pour le bon fonctionnement du programme, ou lorsque vous souhaitez que le script continue même si le fichier inclus est manquant.
 
 2. require
 
 require fonctionne de manière similaire à include, mais avec une différence importante : si le fichier n'est pas trouvé, PHP renverra une erreur fatale (fatal error) et arrêtera l'exécution du script. Cela est utile pour les fichiers qui sont essentiels pour le bon fonctionnement de l'application (par exemple, des fichiers de configuration, des classes nécessaires, etc.).
-•	Utilisé lorsque l'absence du fichier inclus rend le reste du programme inutilisable ou incorrect.
+-	Utilisé lorsque l'absence du fichier inclus rend le reste du programme inutilisable ou incorrect.

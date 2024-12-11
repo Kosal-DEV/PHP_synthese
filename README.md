@@ -4,7 +4,7 @@ Ce projet présente une synthèse des bases du langage PHP, avec des explication
 
 ## Table des matières
 
-1. [Les variables](#les-variables)
+1. [Les variables](#1.variable.md)
 2. [Les tableaux](#les-tableaux)
     - [Tableau indexé](#tableau-indexé)
     - [Tableau associatif](#tableau-associatif)

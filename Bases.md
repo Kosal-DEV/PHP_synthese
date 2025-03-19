@@ -173,3 +173,141 @@ include est utilisé pour inclure et exécuter un fichier PHP dans le fichier pr
 
 require fonctionne de manière similaire à include, mais avec une différence importante : si le fichier n'est pas trouvé, PHP renverra une erreur fatale (fatal error) et arrêtera l'exécution du script. Cela est utile pour les fichiers qui sont essentiels pour le bon fonctionnement de l'application (par exemple, des fichiers de configuration, des classes nécessaires, etc.).
 -	Utilisé lorsque l'absence du fichier inclus rend le reste du programme inutilisable ou incorrect.
+
+## Programmation Orientée Objet en PHP
+
+La Programmation Orientée Objet (POO) en PHP permet d'organiser le code en utilisant des classes et des objets, ce qui favorise la modularité et la réutilisation du code.
+
+**1. Concepts de Base**
+
+Classes et Objets :
+
+Une classe est un modèle définissant les propriétés et méthodes d'un objet.
+
+Un objet est une instance d'une classe.
+```PHP
+class Voiture {
+    public $marque;
+    public $couleur;
+    
+    public function __construct($marque, $couleur) {
+        $this->marque = $marque;
+        $this->couleur = $couleur;
+    }
+    
+    public function rouler() {
+        return "La voiture $this->marque $this->couleur roule.";
+    }
+}
+
+$maVoiture = new Voiture("Toyota", "rouge");
+echo $maVoiture->rouler();
+```
+Propriétés : Variables définies dans une classe (ex: $marque, $couleur).
+
+Méthodes : Fonctions définies dans une classe (ex: rouler()).
+
+**2. Encapsulation**
+
+L'encapsulation protège l'accès aux propriétés d'une classe grâce aux modificateurs d'accès :
+
+public : accessible partout.
+
+private : accessible uniquement dans la classe.
+
+protected : accessible dans la classe et ses sous-classes.
+```php
+class Personne {
+    private $nom;
+    
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+    
+    public function getNom() {
+        return $this->nom;
+    }
+}
+
+$personne = new Personne("Alice");
+echo $personne->getNom();
+```
+
+## Getter et setter :
+
+Les getters et setters sont des méthodes utilisées pour accéder et modifier des propriétés privées d'une classe.
+
+__Pourquoi les utiliser ?__
+
+En programmation orientée objet, il est recommandé de garder les propriétés d'une classe privées (private) pour éviter qu'elles soient directement modifiées de l'extérieur. On utilise alors :
+
+Les getters pour récupérer la valeur d'une propriété.
+Les setters pour modifier la valeur d'une propriété.
+```php
+class Personne {
+    private $nom; // Propriété privée
+
+    // Constructeur
+    public function __construct($nom) {
+        $this->nom = $nom;
+    }
+
+    // Getter pour récupérer la valeur de $nom
+    public function getNom() {
+        return $this->nom;
+    }
+
+    // Setter pour modifier la valeur de $nom
+    public function setNom($nouveauNom) {
+        $this->nom = $nouveauNom;
+    }
+}
+
+// Création d'un objet
+$personne = new Personne("Alice");
+
+echo $personne->getNom(); // Affiche "Alice"
+
+$personne->setNom("Bob"); // Modification de la propriété via le setter
+
+echo $personne->getNom(); // Affiche "Bob"
+```
+
+## L'héritage en POO :
+
+L'héritage permet à une classe (classe enfant) de réutiliser les propriétés et méthodes d'une autre classe (classe parent). Une classe enfant peut également surcharger une méthode de la classe parent.
+
+Classe parent :
+```php
+class Humain{
+    protected string $yeux;
+    protected string $nez;
+    protected string $bras;
+
+    public function __construct(string $desYeux, string $unNez, string $desBras){
+        $this->yeux = $desYeux;
+        $this->nez = $unNez;
+        $this->bras = $desBras;
+    }
+    public function respirer(): void{
+        echo "Vous respirez !<br>";
+    }
+    public function mourir(): void{
+        echo "Vous êtes mort !!!<br>";
+    }
+}
+```
+
+Class enfant qui hérite de parent :
+```php
+class Femme extends Humain{
+    private string $poitrine;
+    public function __construct(string $desYeux, string $unNez, string $desBras, string $unePoitrine){
+        parent::__construct($desYeux, $unNez, $desBras);
+        $this->poitrine = $unePoitrine;
+    }
+    public function accoucher(): void{
+        echo "Elle accouche !!<br>";
+    }
+}
+```

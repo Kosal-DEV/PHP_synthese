@@ -311,3 +311,95 @@ class Femme extends Humain{
     }
 }
 ```
+
+# PHP Data Objects (PDO)
+
+## Introduction
+**PDO (PHP Data Objects)** est une extension de PHP qui fournit une interface uniforme pour interagir avec différentes bases de données. Contrairement à `mysqli`, PDO est orienté objet et supporte plusieurs SGBD.
+
+## Avantages de PDO
+- **Portabilité** : Fonctionne avec divers systèmes de gestion de bases de données (MySQL, PostgreSQL, SQLite, etc.).
+- **Sécurité** : Protège contre les injections SQL grâce aux requêtes préparées.
+- **Flexibilité** : Gère les erreurs de manière élégante avec les exceptions.
+- **Performances** : Optimisé pour de meilleures performances avec les requêtes préparées.
+
+## Connexion à une Base de Données
+```php
+$dsn = "mysql:host=localhost;dbname=ma_base;charset=utf8";
+$username = "root";
+$password = "";
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Gestion des erreurs
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Mode de récupération des données
+    PDO::ATTR_EMULATE_PREPARES => false // Désactive l'émulation des requêtes préparées (meilleure sécurité)
+];
+
+try {
+    $pdo = new PDO($dsn, $username, $password, $options);
+    echo "Connexion réussie";
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+```
+
+La fonction die() dans le catch sert à arrêter immédiatement l'exécution du script et afficher un message d'erreur.
+## Requêtes avec PDO
+### Requête Simple
+```php
+$sql = "SELECT * FROM utilisateurs";
+$stmt = $pdo->query($sql);
+$utilisateurs = $stmt->fetchAll();
+```
+
+La fonction query() en PDO est utilisée pour exécuter directement une requête SQL simple qui ne contient pas de paramètres. Elle est souvent utilisée pour les requêtes de type SELECT.
+
+### Requête Préparée (Sécurisée)
+```php
+$sql = "SELECT * FROM utilisateurs WHERE email = :email";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['email' => 'exemple@email.com']);
+$resultat = $stmt->fetch();
+```
+
+### Insertion de Données
+```php
+$sql = "INSERT INTO utilisateurs (nom, email) VALUES (:nom, :email)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    'nom' => 'John Doe',
+    'email' => 'john.doe@email.com'
+]);
+```
+
+### Mise à Jour de Données
+```php
+$sql = "UPDATE utilisateurs SET nom = :nom WHERE id = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    'nom' => 'Jane Doe',
+    'id' => 1
+]);
+```
+
+### Suppression de Données
+```php
+$sql = "DELETE FROM utilisateurs WHERE id = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['id' => 1]);
+```
+
+## Gestion des Transactions
+```php
+try {
+    $pdo->beginTransaction();
+    $pdo->exec("UPDATE comptes SET solde = solde - 100 WHERE id = 1");
+    $pdo->exec("UPDATE comptes SET solde = solde + 100 WHERE id = 2");
+    $pdo->commit();
+} catch (Exception $e) {
+    $pdo->rollBack();
+    echo "Échec de la transaction : " . $e->getMessage();
+}
+```
+
+## Conclusion
+PDO est un outil puissant et sécurisé pour interagir avec les bases de données en PHP. Il facilite la gestion des erreurs, améliore la sécurité et offre une flexibilité accrue grâce à son support multi-SGBD.

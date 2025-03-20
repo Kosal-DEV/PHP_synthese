@@ -388,18 +388,5 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => 1]);
 ```
 
-## Gestion des Transactions
-```php
-try {
-    $pdo->beginTransaction();
-    $pdo->exec("UPDATE comptes SET solde = solde - 100 WHERE id = 1");
-    $pdo->exec("UPDATE comptes SET solde = solde + 100 WHERE id = 2");
-    $pdo->commit();
-} catch (Exception $e) {
-    $pdo->rollBack();
-    echo "Échec de la transaction : " . $e->getMessage();
-}
-```
-
 ## Conclusion
 PDO est un outil puissant et sécurisé pour interagir avec les bases de données en PHP. Il facilite la gestion des erreurs, améliore la sécurité et offre une flexibilité accrue grâce à son support multi-SGBD.

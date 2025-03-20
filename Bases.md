@@ -190,7 +190,7 @@ class Voiture {
     public $marque;
     public $couleur;
     
-    public function __construct($marque, $couleur) {
+    public function __construct(string $marque, string $couleur) {
         $this->marque = $marque;
         $this->couleur = $couleur;
     }

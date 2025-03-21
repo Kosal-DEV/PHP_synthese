@@ -144,22 +144,133 @@ echo $resultat;
 Les fonctions intégrées en PHP (ou fonctions natives) sont des fonctions qui sont déjà définies dans le langage PHP, et que vous pouvez utiliser sans avoir à les définir vous-même. Ces fonctions couvrent une large gamme de tâches courantes, comme la gestion des chaînes de caractères, des tableaux, des dates, la manipulation de fichiers, des opérations mathématiques, des opérations sur des bases de données, et bien plus encore.
 
 `strlen()` : Retourne la longueur d'une chaîne.
+```php
+$chaine = "Bonjour";
+echo strlen($chaine); // Affiche 7
+```
 
 `strtoupper()` : Convertit une chaîne en majuscules.
+```php
+$chaine = "bonjour";
+echo strtoupper($chaine); // Affiche "BONJOUR"
+```
 
 `str_replace()` : Remplace toutes les occurrences d'une sous-chaîne par une autre.
+```php
+$chaine = "Bonjour tout le monde";
+echo str_replace("tout", "tout le monde", $chaine); // Affiche "Bonjour tout le monde"
+```
 
 `substr()` : Extrait une portion d'une chaîne.
+```php
+$chaine = "Bonjour tout le monde";
+echo substr($chaine, 0, 7); // Affiche "Bonjour"
+```
 
 `count()` : Retourne le nombre d'éléments dans un tableau.
+```php
+$tableau = [1, 2, 3, 4];
+echo count($tableau); // Affiche 4
+```
 
 `array_push()` : Ajoute un ou plusieurs éléments à la fin d'un tableau.
+```php
+$tableau = [1, 2, 3];
+array_push($tableau, 4, 5);
+print_r($tableau); // Affiche Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 4 [4] => 5 )
+```
 
 `Rand()` : La fonction rand() en PHP est utilisée pour générer un nombre aléatoire.
+```php
+echo rand(1, 10); // Affiche un nombre entre 1 et 10 (ex. 4)
+```
 
 `Readline()` : Permet de demander à l’utilisateur d’entrer une valeur.
+```php
+$nom = readline("Entrez votre nom: ");
+echo "Bonjour, $nom!";
+```
 
 `Is_numeric()` : Permet de vérifier qu’une valeur est bien numeric (int, float).
+```php
+$valeur = "42";
+echo is_numeric($valeur) ? "C'est un nombre." : "Ce n'est pas un nombre."; // Affiche "C'est un nombre."
+```
+
+`trim()` : Supprime les espaces (ou d'autres caractères) au début et à la fin d'une chaîne.
+```php
+$chaine = "   Bonjour   ";
+echo trim($chaine); // Affiche "Bonjour"
+```
+
+`ucfirst()` : Met en majuscule la première lettre d'une chaîne.
+```php
+$chaine = "bonjour";
+echo ucfirst($chaine); // Affiche "Bonjour"
+```
+
+`str_split()` : Divise une chaîne en un tableau de caractères.
+```php
+$chaine = "Bonjour";
+print_r(str_split($chaine)); // Affiche Array ( [0] => B [1] => o [2] => n [3] => j [4] => o [5] => u [6] => r )
+```
+
+`array_pop()` : Supprime et retourne le dernier élément d'un tableau.
+```php
+$tableau = [1, 2, 3];
+$last = array_pop($tableau);
+echo $last; // Affiche 3
+print_r($tableau); // Affiche Array ( [0] => 1 [1] => 2 )
+```
+
+`array_shift()` : Supprime et retourne le premier élément d'un tableau.
+```php
+$tableau = [1, 2, 3];
+$first = array_shift($tableau);
+echo $first; // Affiche 1
+print_r($tableau); // Affiche Array ( [0] => 2 [1] => 3 )
+```
+
+`in_array()` : Vérifie si une valeur existe dans un tableau.
+```php
+$tableau = [1, 2, 3];
+echo in_array(2, $tableau) ? "Trouvé" : "Pas trouvé"; // Affiche "Trouvé"
+```
+
+`date()` : Formate une date/heure locale.
+```php
+echo date("Y-m-d H:i:s"); // Affiche la date et l'heure actuelles (ex. 2025-03-21 15:30:45)
+```
+
+`strtotime()` : Convertit une chaîne de caractères en timestamp Unix.
+```php
+$timestamp = strtotime("2025-03-21 15:30:45");
+echo $timestamp; // Affiche un timestamp, par exemple 1679404245
+```
+
+`time()` : Retourne l'heure actuelle sous forme de timestamp Unix.
+```php
+echo time(); // Affiche le timestamp actuel
+```
+
+`max() / min()` : Retourne respectivement la valeur maximale ou minimale parmi une série de nombres.
+```php
+$valeurs = [1, 5, 3, 8, 2];
+echo max($valeurs); // Affiche 8
+echo min($valeurs); // Affiche 1
+```
+
+`isset()` : Vérifie si une variable est définie et n'est pas nulle.
+```php
+$var = "test";
+echo isset($var) ? "Définie" : "Non définie"; // Affiche "Définie"
+```
+
+`empty()` : Vérifie si une variable est vide (null, "", 0, etc.).
+```php
+$var = "";
+echo empty($var) ? "Vide" : "Non vide"; // Affiche "Vide"
+```
 
 ## Require et include :
 require et include sont des structures utilisées pour inclure et exécuter du code d'un autre fichier PHP dans le fichier en cours d'exécution. Les deux ont un fonctionnement similaire, mais il existe des différences importantes.
@@ -388,5 +499,58 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => 1]);
 ```
 
-## Conclusion
-PDO est un outil puissant et sécurisé pour interagir avec les bases de données en PHP. Il facilite la gestion des erreurs, améliore la sécurité et offre une flexibilité accrue grâce à son support multi-SGBD.
+## Format des dates en PHP
+
+En PHP, la fonction `date()` permet de formater des dates et des heures selon des spécifications précises. Voici les principaux formats que tu peux utiliser.
+
+## Composants de la date et de l'heure
+
+### Année
+- `Y` : Année complète (4 chiffres) – Exemple : `2025`
+- `y` : Derniers 2 chiffres de l'année – Exemple : `25`
+
+### Mois
+- `m` : Mois en chiffres (avec zéro devant si nécessaire) – Exemple : `03`
+- `n` : Mois sans zéro devant – Exemple : `3`
+- `M` : Mois abrégé – Exemple : `Mar`
+- `F` : Mois complet – Exemple : `March`
+
+### Jour
+- `d` : Jour du mois avec zéro devant – Exemple : `09`
+- `j` : Jour du mois sans zéro – Exemple : `9`
+- `D` : Jour abrégé de la semaine – Exemple : `Mon`
+- `l` : Jour complet de la semaine – Exemple : `Monday`
+
+### Heure
+- `H` : Heure au format 24h avec zéro devant – Exemple : `14`
+- `h` : Heure au format 12h avec zéro devant – Exemple : `02`
+- `i` : Minutes avec zéro devant – Exemple : `05`
+- `s` : Secondes avec zéro devant – Exemple : `09`
+- `a` : "am" ou "pm" (en minuscules)
+- `A` : "AM" ou "PM" (en majuscules)
+
+### Autres formats
+- `U` : Timestamp Unix (secondes depuis le 1er janvier 1970)
+- `z` : Jour de l'année (ex. `45` pour le 45e jour de l'année)
+- `W` : Semaine de l'année (ex. `12` pour la 12e semaine)
+
+## Exemples de formatages
+
+   ```php
+   echo date("l, F j, Y"); // Affiche "Monday, March 21, 2025"
+   ```
+   ```php
+   echo date("m/d/Y"); // Affiche "03/21/2025"
+   ```
+   ```php
+   echo date("H:i:s"); // Affiche "14:30:45"
+   ```
+   ```php
+   echo date("h:i:s A"); // Affiche "02:30:45 PM"
+   ```
+   ```php
+   echo date("U"); // Affiche un timestamp Unix (ex. 1679412052)
+   ```
+   ```php
+   echo date("D, M j, Y"); // Affiche "Mon, Mar 21, 2025"
+   ```
